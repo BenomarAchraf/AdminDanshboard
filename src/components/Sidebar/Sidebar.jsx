@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState} from 'react'
 import "./Sidebar.css"
 import {
     LineStyle,
@@ -16,16 +16,19 @@ import {
   } from "@material-ui/icons";
   import { Link } from "react-router-dom";
 const Sidebar = () => {
+
+  const [verify, setVerify]=useState("Home")
   return (
     <div className="Sidebar">
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
             <h3 className="sidebarTitle"> Dashboard </h3>
             <ul className="sidebarItemList">
-                <li className="sidebarItem active">
+              <Link to="/" className='link' onClick={()=>setVerify("Home")}>
+                <li className={`sidebarItem${verify==="Home"? " active":""}`}>
                 <LineStyle className="sidebarIcon" />
               Home
-                </li>
+                </li></Link>
                 <li className="sidebarItem">
               <Timeline className="sidebarIcon" />
               Analytics
@@ -40,17 +43,18 @@ const Sidebar = () => {
 
             <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarItemList">
-
-              <li className="sidebarItem">
+            <Link to="/users" className='link' onClick={()=>setVerify("Users")}>
+              <li className={`sidebarItem${verify==="Users"? " active":""}`}>
                 <PermIdentity className="sidebarIcon" />
                 Users
               </li>
-
-              <li className="sidebarItem">
+            </Link>
+            <Link to="/products" className='link' onClick={()=>setVerify("products")}>
+              <li className={`sidebarItem${verify==="products"? " active":""}`}>
                 <Storefront className="sidebarIcon" />
                 Products
               </li>
-
+            </Link>
             <li className="sidebarItem">
               <AttachMoney className="sidebarIcon" />
               Transactions
